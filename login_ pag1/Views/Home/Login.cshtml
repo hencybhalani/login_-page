@@ -1,0 +1,281 @@
+﻿@* @model login__pag1.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iKJE9trdNl+5NvP+2sPF3PuUFE70Fb5Fv5LZB/Ooh21L9ttsI9l9rmQxS" crossorigin="anonymous">
+
+</head>
+
+<body>
+<h1>Login</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @{
+            if(ViewBag.Message != null){
+                <p style="color:red;">@ViewBag.Message</p>
+            }
+        }
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+       
+            <div class="form-group">
+                <label asp-for="Emailid" class="control-label"></label>
+                <input asp-for="Emailid" class="form-control" />
+                <span asp-validation-for="Emailid" class="text-danger"></span>
+            </div>
+                <div class="form-group input-group-append">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                
+                    <span class="input-group-text" id="showPasswordToggle" onclick="togglePasswordVisibility()">
+                        <i id="eyeIcon" class="fa fa-eye"></i>
+                    </span>
+                
+                <span asp-validation-for="Password" class="text-danger"></span>
+               
+
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+        <p><a asp-controller="Home" asp-action="Register">not registred yet? Click here to Registration</a></p>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("Password");
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
+        }
+    </script>
+}
+}
+</body>
+
+</html> *@
+ @model login__pag1.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+<html>
+    <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iKJE9trdNl+5NvP+2sPF3PuUFE70Fb5Fv5LZB/Ooh21L9ttsI9l9rmQxS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        /* Custom CSS to decrease the width of the input boxes */
+        .otp-input {
+            width: 40px; /* Adjust the width as needed */
+            gap:2px;
+        }
+
+        /* Custom CSS to display the form group inline */
+        .inline-form-group {
+            display: inline;
+        }
+    </style>
+
+</head>
+
+    <body>
+<h1>Login</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("myform"))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Emailid" class="control-label"></label>
+                <input asp-for="Emailid" class="form-control" id="Email" name="Email"/>
+                <span asp-validation-for="Emailid" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="Password" type="password" class="form-control" id="Password"/>
+                    <div class="input-group-append">
+                            <span class="input-group-text" id="showPasswordToggle" onclick="togglePasswordVisibility()" style="height:35px">
+                            <i id="eyeIcon" class="fa fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary"  id="otp" data-toggle="modal" data-target="#exampleModal">
+  Verify Email
+</button>
+            </div>
+  
+        }
+
+        <p><a asp-controller="Home" asp-action="Register">Not registered yet? Click here to Registration</a></p>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Verify OTP</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+         <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Enter OTP:-</label>
+            @* <input type="text" class="form-control" id="enterotp"> *@
+                                    <div class="row">
+                                        <input type="text" class="form-control otp-input" id="otpDigit1" name="otpDigit1" maxlength="1" required>
+                                        <input type="text" class="form-control otp-input" id="otpDigit2" name="otpDigit2" maxlength="1" required>
+                                        <input type="text" class="form-control otp-input" id="otpDigit3" name="otpDigit3" maxlength="1" required>
+                                        <input type="text" class="form-control otp-input" id="otpDigit4" name="otpDigit4" maxlength="1" required>
+                                        <input type="text" class="form-control otp-input" id="otpDigit5" name="otpDigit5" maxlength="1" required>
+                                    </div>
+                                    <small class="form-text text-muted">Do not share OTP with others!</small>
+           
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit"  id="btnclick" value="OK" class="btn btn-primary" />
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var inputs = document.querySelectorAll('.otp-input');
+
+                        for (var i = 0; i < inputs.length; i++) {
+                            inputs[i].addEventListener('input', function () {
+                                // Move focus to the next input element if a number is entered
+                                if (this.value && /^\d$/.test(this.value)) {
+                                    var index = Array.prototype.indexOf.call(inputs, this);
+                                    if (index < inputs.length - 1) {
+                                        inputs[index + 1].focus();
+                                    }
+                                }
+                            });
+
+                            inputs[i].addEventListener('keydown', function (event) {
+                                // Move focus to the previous input element if the backspace key is pressed
+                                if (event.key === "Backspace" && this.value === "") {
+                                    var index = Array.prototype.indexOf.call(inputs, this);
+                                    if (index > 0) {
+                                        inputs[index - 1].focus();
+                                    }
+                                }
+                            });
+                        }
+                    });
+        function togglePasswordVisibility() {
+                var passwordInput = document.getElementById("Password");
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
+        }
+
+       $("#otp").on("click",function(){
+           $("#exampleModal").show();
+                        var dataObj = {
+                            Email: $('#Email').val(),
+                        };
+           $.ajax({
+                            url: "/Home/sendOtp",
+               type: "POST",
+               data:dataObj,
+               success: function (result) {
+                   alert("success");
+               },
+               error: function () {
+
+               }
+
+
+           });
+       });
+
+
+                    $("#btnclick").on("click", function () {
+                       
+                        var dataObj = {
+                            otp: $('#enterotp').val(),
+                        };
+                        $.ajax({
+                            url: "/Home/ValidateOTP",
+                            type: "POST",
+                            data: dataObj,
+                            success: function (result) {
+                                window.location.href = "/Home/Dashboard";
+                            },
+                            error: function () {
+
+                            }
+
+
+                        });
+                    });
+        
+
+           
+    </script>
+}
+</body>
+</html>
